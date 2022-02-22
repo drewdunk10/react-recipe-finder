@@ -1,6 +1,7 @@
 import logo from '../../logo.svg';
 import UserContext from "../User/User";
 import Search from "../Search/Search";
+import RecipeCard from "../RecipeCard/RecipeCard"
 import './App.css';
 
 const user = {
@@ -13,19 +14,12 @@ function App() {
       <UserContext.Provider value={user}>
         <div className="App">
           <header className="App-header">
-            <button type={"button"} onClick={Search.fetchRecipes("steak")}/>
-            <img src={logo} className="App-logo" alt="logo" />
+            {/* TODO: Update recipe cards when search button is clicked */}
+            <RecipeCard recipe={Search.fetchRecipes("steak")}/>
+            <button type={"button"}>Submit</button>
             <p>
               Edit <code>src/App.js</code> and save to reload.
             </p>
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
           </header>
         </div>
       </UserContext.Provider>

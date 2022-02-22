@@ -1,8 +1,8 @@
-import { parse } from 'iso8601-duration'
+import {parse} from 'iso8601-duration'
 
 const fetchRecipes = (searchStr) => {
     // Fetch data from XML file and store as JSON objects in events array.
-    fetch('./recipes.json')
+    return fetch('./recipes.json')
         .then(response => {
             // Validate response.
             if (!response.ok) {
@@ -20,9 +20,10 @@ const fetchRecipes = (searchStr) => {
             filteredRecipes.forEach(item => {
                 item.prepTime = formatDuration(item.prepTime);
                 item.cookTime = formatDuration(item.cookTime);
+                item.recipeYield = (item.recipeYield === "") ? "N/A" : item.recipeYield;
             })
             return filteredRecipes;
-    })
+        });
 }
 
 const formatDuration = (durationISO) => {
