@@ -3,8 +3,8 @@ export default RecipeCard;
 // TODO: Create a separate view/page for viewing ingredients and description
 function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredients}) {
     return(
-        <article className="recipe-card">;
-            <img className="recipe" src={image} alt="Recipe for ${recipe.name}."/>;
+        <article className="recipe-card">
+            <img className="recipe" src={image} alt="Recipe for ${recipe.name}."/>
                 <section className="event-card-body">
                     <h3>{name}</h3>
                     <p><strong>Cook Time: </strong>{cookTime}</p>

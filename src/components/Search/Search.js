@@ -1,5 +1,17 @@
 import {parse} from 'iso8601-duration'
 
+function Search({update}) {
+    return(
+        <section>
+            <label>
+                Name:
+                <input type="text" name="name" />
+            </label>
+            <button type={"button"} onClick={async () => update(await fetchRecipes(document.querySelector("input").value))}>Submit</button>
+        </section>
+    );
+}
+
 const fetchRecipes = (searchStr) => {
     // Fetch data from XML file and store as JSON objects in events array.
     return fetch('./recipes.json')
@@ -35,10 +47,6 @@ const formatDuration = (durationISO) => {
                           + ":" + `${durationComponents.seconds}`.padStart(2, "0");
     }
     return formattedDuration
-}
-
-const Search = {
-    fetchRecipes
 }
 
 export default Search

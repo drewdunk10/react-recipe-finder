@@ -16,16 +16,15 @@ function App() {
       <UserContext.Provider value={user}>
         <div className="App">
           <header className="App-header">
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
+            <h1>
+              Recipe Finder
+            </h1>
+            <h2>
+                  By Drew Dunkelberger
+            </h2>
           </header>
             <form>
-                <label>
-                    Name:
-                    <input type="text" name="name" />
-                </label>
-                <button type={"button"} onClick={async () => setRecipes(await Search.fetchRecipes(document.querySelector("input").value))}>Submit</button>
+                <Search update={setRecipes}/>
                 {
                     recipes.map(recipe =>
                         <RecipeCard
