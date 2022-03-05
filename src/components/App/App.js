@@ -1,11 +1,13 @@
 import UserContext from "../User/User";
 import Search from "../Search/Search";
 import RecipeCard from "../RecipeCard/RecipeCard"
+import GroceryList from "../GroceryList/GroceryList"
 import './App.css';
 import {useState} from "react";
 
 const user = {
-  name: 'Drew'
+    name: 'Drew',
+    groceryList: ["someIngredient"]
 }
 
 function App() {
@@ -16,12 +18,15 @@ function App() {
       <UserContext.Provider value={user}>
         <div className="App">
           <header className="App-header">
-            <h1>
-              Recipe Finder
-            </h1>
-            <h2>
+              <nav>
+                  <GroceryList/>
+              </nav>
+              <h1>
+                  Recipe Finder
+              </h1>
+              <h2>
                   By Drew Dunkelberger
-            </h2>
+              </h2>
           </header>
             <form>
                 <Search update={setRecipes}/>
