@@ -22,7 +22,6 @@ function GroceryList() {
                                 )
                             }
                         </ul>
-
                     </section>
                 </li>
                 <li>Welcome, {user.name}</li>

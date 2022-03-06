@@ -7,7 +7,7 @@ import {useState} from "react";
 
 const user = {
     name: 'Drew',
-    groceryList: ["someIngredient", "another"]
+    groceryList: []
 }
 
 function App() {

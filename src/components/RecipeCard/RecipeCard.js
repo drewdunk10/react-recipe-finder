@@ -1,11 +1,13 @@
 import './RecipeCard.css'
-import {useState} from "react";
+import {useContext, useState} from "react";
+import UserContext from "../User/User";
 
 export default RecipeCard;
 
 // TODO: Create a separate view/page for viewing ingredients and description
 function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredients}) {
     const [isHidden, setHidden] = useState(true)
+    const user = useContext(UserContext);
 
     return(
         <article className="recipe-card">
@@ -23,7 +25,7 @@ function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredi
                             {
                                 ingredients.map(item =>
                                     <li>
-                                        {item}
+                                        {item} <button type={"button"} onClick={() => addItem(user, item)}>+</button>
                                     </li>
                                 )
                             }
@@ -32,4 +34,8 @@ function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredi
                 </section>
         </article>
     );
+}
+
+const addItem = (user, item) => {
+    user.groceryList.push(item)
 }
