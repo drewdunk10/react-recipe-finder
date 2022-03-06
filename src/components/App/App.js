@@ -1,9 +1,9 @@
 import UserContext from "../User/User";
 import Search from "../Search/Search";
 import RecipeCard from "../RecipeCard/RecipeCard"
-import GroceryList from "../GroceryList/GroceryList"
 import './App.css';
 import {useState} from "react";
+import Navigation from "../Navigation/Navigation";
 
 const user = {
     name: 'Drew',
@@ -18,9 +18,7 @@ function App() {
       <UserContext.Provider value={user}>
         <div className="App">
           <header className="App-header">
-              <nav>
-                  <GroceryList/>
-              </nav>
+              <Navigation/>
               <h1>
                   Recipe Finder
               </h1>

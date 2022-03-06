@@ -1,0 +1,8 @@
+.user-bar {
+    display: flex;
+    justify-content: right;
+    gap: 1.5em;
+    /* Hide bullet point and remove its spacing */
+    list-style: none;
+    padding: 0;
+}
