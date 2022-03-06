@@ -1,0 +1,26 @@
+.user-bar {
+    display: flex;
+    justify-content: right;
+    gap: 1.5em;
+    /* Hide bullet point and remove its spacing */
+    list-style: none;
+    padding: 0;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Hide bullet point and remove its spacing */
+    list-style: none;
+    padding: 0;
+}
+
+.hidden-list {
+    display: none;
+}
+
+.expanded-list {
+    display: block;
+    margin: auto 0;  /* Override main section margin. */
+}

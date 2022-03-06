@@ -1,0 +1,12 @@
+.hidden-desc {
+    display: none;
+}
+
+.expanded-desc {
+    display: block;
+    margin: auto 0;  /* Override main section margin. */
+}
+
+.recipe-card {
+    text-align: left;
+}
