@@ -12,26 +12,27 @@ function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredi
     return(
         <article className="recipe-card">
             <img className="recipe" src={image} alt={"Some Recipe."}/>
-                <section>
-                    <h3>{name}</h3>
-                    <p><strong>Cook Time: </strong>{cookTime}</p>
-                    <p><strong>Prep Time: </strong>{prepTime}</p>
-                    <p><strong>Yield: </strong>{recipeYield}</p>
-                    <button type="button" onClick={() => setHidden(!isHidden)}>View Recipe</button>
-                    <section className={isHidden ? "hidden-desc" : "expanded-desc"}>
-                        <p>{desc}</p>
-                        <p>{ingredients}</p>
-                        <ul>
-                            {
-                                ingredients.map(item =>
-                                    <li>
-                                        {item} <button type={"button"} onClick={() => addItem(user, item)}>+</button>
-                                    </li>
-                                )
-                            }
-                        </ul>
-                    </section>
+            <section className={"recipe-body"}>
+                <h3>{name} Recipe</h3>
+                <p><strong>Cook Time: </strong>{cookTime}</p>
+                <p><strong>Prep Time: </strong>{prepTime}</p>
+                <p><strong>Yield: </strong>{recipeYield}</p>
+                <button type="button" onClick={() => setHidden(!isHidden)}>View Recipe</button>
+                <button type="button">Add to Favorites</button>
+                <section className={isHidden ? "hidden-desc" : "expanded-desc"}>
+                    <p>{desc}</p>
+                    <h3 className={'ingredient-header'}>Ingredients</h3>
+                    <ul className={"ingredient-list"}>
+                        {
+                            ingredients.map(item =>
+                                <li>
+                                    {item} <button type={"button"} onClick={() => addItem(user, item)}>+</button>
+                                </li>
+                            )
+                        }
+                    </ul>
                 </section>
+            </section>
         </article>
     );
 }

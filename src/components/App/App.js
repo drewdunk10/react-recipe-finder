@@ -30,20 +30,22 @@ function App() {
           </header>
             <form>
                 <Search update={setRecipes}/>
-                {
-                    recipes.map(recipe =>
-                        <RecipeCard
-                            key={recipe.name}
-                            image={recipe.image}
-                            name={recipe.name}
-                            cookTime={recipe.cookTime}
-                            prepTime={recipe.prepTime}
-                            recipeYield={recipe.recipeYield}
-                            desc={recipe.description}
-                            ingredients={recipe.ingredients}
-                        />
-                    )
-                }
+                <main id={'recipe-container'}>
+                    {
+                        recipes.map(recipe =>
+                            <RecipeCard
+                                key={recipe.name}
+                                image={recipe.image}
+                                name={recipe.name}
+                                cookTime={recipe.cookTime}
+                                prepTime={recipe.prepTime}
+                                recipeYield={recipe.recipeYield}
+                                desc={recipe.description}
+                                ingredients={recipe.ingredients}
+                            />
+                        )
+                    }
+                </main>
             </form>
         </div>
       </UserContext.Provider>
