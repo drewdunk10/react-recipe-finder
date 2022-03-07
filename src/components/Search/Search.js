@@ -1,15 +1,20 @@
 import {parse} from 'iso8601-duration'
 
-function Search({update}) {
+function Search({update, setView}) {
     return(
         <section>
             <label>
                 Name:
                 <input type="text" name="name" />
             </label>
-            <button type={"button"} onClick={async () => update(await fetchRecipes(document.querySelector("input").value))}>Submit</button>
+            <button type={"button"} onClick={async () => handleSearch(update, setView)}>Submit</button>
         </section>
     );
+}
+
+const handleSearch = async (update, setView) => {
+    await update(await fetchRecipes(document.querySelector("input").value));
+    setView({name: "main-app"});
 }
 
 const fetchRecipes = (searchStr) => {
