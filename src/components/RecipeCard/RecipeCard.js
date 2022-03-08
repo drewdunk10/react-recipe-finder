@@ -1,5 +1,6 @@
 import './RecipeCard.css'
 import {useContext} from "react";
+import { FaHeart, FaEye } from "react-icons/fa"
 import UserContext from "../User/User";
 
 export default RecipeCard;
@@ -35,7 +36,7 @@ function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredi
                 <p><strong>Prep Time: </strong>{prepTime}</p>
                 <p><strong>Yield: </strong>{recipeYield}</p>
                 {
-                    viewName !== name ? <button type="button" onClick={viewRecipe}>View Recipe</button> :
+                    viewName !== name ? <button type="button" onClick={viewRecipe}><FaEye/>  View Recipe</button> :
                         <section>
                             <p>{desc}</p>
                             <h3 className={'ingredient-header'}>Ingredients</h3>
@@ -50,7 +51,7 @@ function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredi
                             </ul>
                         </section>
                 }
-                <button type="button">Add to Favorites</button>
+                <button type="button"><FaHeart/> Add to Favorites</button>
             </section>
         </article>
     );

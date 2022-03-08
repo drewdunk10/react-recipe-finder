@@ -31,8 +31,9 @@ function App() {
                   By Drew Dunkelberger
               </h2>
           </header>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <Search update={setRecipes} setView={setView}/>
+            </form>
                 {view.name === 'main-app' ?
                     <main id={'recipe-container'}>
                         {
@@ -67,10 +68,14 @@ function App() {
                         />
                     </main>
                 }
-            </form>
         </div>
       </UserContext.Provider>
   );
+}
+
+const handleSubmit = (event) => {
+    console.log("HERE")
+    event.preventDefault();
 }
 
 export default App;

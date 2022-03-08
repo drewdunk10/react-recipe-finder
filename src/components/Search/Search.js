@@ -1,24 +1,33 @@
 import {parse} from 'iso8601-duration'
+import { FaSearch } from "react-icons/fa"
+import './Search.css';
 
 function Search({update, setView}) {
     return(
-        <section>
-            <label>
-                Name:
-                <input type="text" name="name" />
-            </label>
-            <button type={"button"} onClick={async () => handleSearch(update, setView)}>Submit</button>
-        </section>
+        <div id={"search-bar"}>
+            <FaSearch/>
+            <input type="text" name="name" placeholder={"Find Recipe"} id={"search-input"}
+                   onKeyPress={async (event) => await handleKeyPress(event, update, setView)}
+            />
+        </div>
     );
 }
 
+const handleKeyPress = async (event, update, setView) => {
+    console.log("Detected keypress")
+    if (event.key === "Enter") {
+        console.log("Detected enter")
+        await handleSearch(update, setView);
+    }
+}
+
 const handleSearch = async (update, setView) => {
-    await update(await fetchRecipes(document.querySelector("input").value));
+    await update(await fetchRecipes(document.querySelector("#search-input").value));
     setView({name: "main-app"});
 }
 
 const fetchRecipes = (searchStr) => {
-    // Fetch data from XML file and store as JSON objects in events array.
+    // Fetch data from JSON in public folder
     return fetch('./recipes.json')
         .then(response => {
             // Validate response.
