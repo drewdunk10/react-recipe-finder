@@ -1,10 +1,19 @@
 import {useContext, useState} from "react";
 import UserContext from "../User/User";
+import { FaLeaf } from "react-icons/fa"
 import './GroceryList.css';
 
 function GroceryList() {
     const user = useContext(UserContext);
     const [isHidden, setHidden] = useState(true)
+
+    const removeItem = (item) => {
+        let index = user.groceryList.indexOf(item);
+        if (index !== -1) {
+            // Remove item from user's grocery list.
+            user.groceryList.splice(index, 1);
+        }
+    }
 
     return(
         <div>
@@ -15,7 +24,7 @@ function GroceryList() {
                         // Display each ingredient as a list item.
                         user.groceryList.map(ingredient =>
                             <li>
-                                {ingredient}
+                                <FaLeaf/> {ingredient} <button type={"button"} onClick={() => removeItem(ingredient)}>-</button>
                             </li>
                         )
                     }
