@@ -15,6 +15,13 @@
     border-radius: 1em;
 }
 
+@media screen and (max-width: 768px) {
+    .recipe-card {
+        text-align: center;
+        width: 98%; /* Fit width of screen */
+    }
+}
+
 .detail-recipe-card {
     text-align: left;
     width: 98%;
@@ -42,6 +49,14 @@
     color: rgb(117, 122, 117);
     border: none;
     border-radius: .5em;
+}
+
+@media screen and (max-width: 768px) {
+    .recipe-button {
+        padding: 1em;
+        margin: .5em;
+        width: 100%;
+    }
 }
 
 .recipe-button:hover {

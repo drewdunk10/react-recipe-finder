@@ -7,6 +7,18 @@
     /*padding: 0 .2em 0 0;*/
 }
 
+@media screen and (max-width: 768px) {
+    .user-bar {
+        justify-content: space-around;
+        flex-direction: column-reverse; /* Display welcome message at top */
+    }
+
+    nav ul button {
+        width: 100%;
+        padding: 1em;
+    }
+}
+
 nav:after {
     content: '';
     width: 100%;

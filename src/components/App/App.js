@@ -21,7 +21,7 @@ function App() {
     return (
       // Give all child components access to user context.
       <UserContext.Provider value={user}>
-        <body id="app">
+        <div id="app">
             <header id="app-header">
                 <Navigation/>
                 <h1>
@@ -68,7 +68,7 @@ function App() {
                         />
                     </main>
                 }
-        </body>
+        </div>
       </UserContext.Provider>
   );
 }
