@@ -21,16 +21,16 @@ function App() {
     return (
       // Give all child components access to user context.
       <UserContext.Provider value={user}>
-        <div className="App">
-          <header className="App-header">
-              <Navigation/>
-              <h1>
-                  Recipe Finder
-              </h1>
-              <h2>
-                  By Drew Dunkelberger
-              </h2>
-          </header>
+        <body id="app">
+            <header id="app-header">
+                <Navigation/>
+                <h1>
+                    Recipe Finder
+                </h1>
+                <h2>
+                    By Drew Dunkelberger
+                </h2>
+            </header>
             <form onSubmit={handleSubmit}>
                 <Search update={setRecipes} setView={setView}/>
             </form>
@@ -68,7 +68,7 @@ function App() {
                         />
                     </main>
                 }
-        </div>
+        </body>
       </UserContext.Provider>
   );
 }

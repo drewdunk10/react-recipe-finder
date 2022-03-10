@@ -1,7 +1,7 @@
 #search-bar {
     border: solid 1px rgb(159, 153, 156);
     border-radius: 1em;
-    margin: auto;
+    margin: 2em auto 2em auto;
     width: 25em;
     height: 1em;
     display: flex;

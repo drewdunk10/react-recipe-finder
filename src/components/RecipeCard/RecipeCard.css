@@ -35,8 +35,17 @@
     background-color: rgba(0,0,0,0.94);
 }
 
-button {
-    margin: .1em;
+.recipe-button {
+    padding: .5em;
+    margin: .2em;
+    background-color: #f0f0f0;
+    color: rgb(117, 122, 117);
+    border: none;
+    border-radius: .5em;
+}
+
+.recipe-button:hover {
+    background-color: #e3e0cc;
 }
 
 .ingredient-list {

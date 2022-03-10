@@ -9,7 +9,7 @@ function Navigation() {
     return(
         <nav className={"flex: 1 1 auto;"}>
             <ul className={"user-bar"}>
-                {<button type={"button"}>Favorites</button>  /* TODO: Replace with link to favorites page*/}
+                {<button className={"grocery-button"} type={"button"}>Favorites</button>  /* TODO: Replace with link to favorites page*/}
                 <li>
                     <GroceryList/>
                 </li>

@@ -4,5 +4,28 @@
     gap: 1.5em;
     /* Hide bullet point and remove its spacing */
     list-style: none;
-    padding: 0;
+    /*padding: 0 .2em 0 0;*/
+}
+
+nav:after {
+    content: '';
+    width: 100%;
+    height: .2em;
+    display: block;
+    background-color: #f0f0f0;
+}
+
+nav ul {
+    padding: 0 .5em;
+}
+
+.grocery-button {
+    background-color: #f8f8f8;
+    color: rgb(117, 122, 117);
+    border: none;
+    border-radius: .5em;
+}
+
+.grocery-button:hover {
+    background-color: #c5d5c5;
 }

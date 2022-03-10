@@ -6,23 +6,25 @@ import './GroceryList.css';
 function GroceryList() {
     const user = useContext(UserContext);
     const [isHidden, setHidden] = useState(true)
+    const [myGroceryList, setMyGroceryList] = useState(user.groceryList)
 
     const removeItem = (item) => {
-        let index = user.groceryList.indexOf(item);
-        if (index !== -1) {
-            // Remove item from user's grocery list.
-            user.groceryList.splice(index, 1);
-        }
+        // Make a copy of user's cart without selected item.
+        let groceryList = Array.from(myGroceryList).filter(ingredient => ingredient !== item);
+
+        // Update state of groceryList for this component and the user context for other components.
+        setMyGroceryList(groceryList);
+        user.groceryList = groceryList;
     }
 
     return(
         <div>
-            <button type="button" onClick={() => setHidden(!isHidden)}>Grocery List</button>
+            <button className={"grocery-button"} type="button" onClick={() => setHidden(!isHidden)}>Grocery List</button>
             <section className={isHidden ? "hidden-desc" : "expanded-desc"}>
                 <ul className={"dropdown"}>
                     {
                         // Display each ingredient as a list item.
-                        user.groceryList.map(ingredient =>
+                        myGroceryList.map(ingredient =>
                             <li>
                                 <FaLeaf/> {ingredient} <button type={"button"} onClick={() => removeItem(ingredient)}>-</button>
                             </li>
