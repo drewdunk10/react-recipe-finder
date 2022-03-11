@@ -12,7 +12,7 @@ function GroceryList({setUser}) {
         let groceryList = user.groceryList.filter(ingredient => ingredient !== item);
 
         // Update groceryList state of App.
-        setUser({name: user.name, groceryList: groceryList})
+        setUser({name: user.name, favorites: user.favorites, groceryList: groceryList})
     }
 
     return(

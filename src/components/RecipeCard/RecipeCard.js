@@ -1,12 +1,24 @@
 import './RecipeCard.css'
-import {useContext} from "react";
-import { FaHeart, FaEye } from "react-icons/fa"
+import {useContext, useState} from "react";
+import { FaEye } from "react-icons/fa"
 import UserContext from "../User/User";
+import Favorite from "../Favorite/Favorite";
 
 export default RecipeCard;
 
-function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredients, viewName, changeView, setUser}) {
+function RecipeCard({recipe, viewName, changeView, setUser}) {
     const user = useContext(UserContext);
+
+    const recipeIsFavorite = (recipeName) => {
+        let flag = false;
+        user.favorites.forEach(fav => {
+            if (fav.name === recipeName) {
+                flag = true;
+            }
+        });
+        return flag;
+    }
+    const [isFavorite, setFavorite] = useState(recipeIsFavorite(recipe.name))
 
     const addItem = (item) => {
         // Make a copy of state groceryList with selected item.
@@ -16,45 +28,44 @@ function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredi
         }
 
         // Update groceryList state of App.
-        setUser({name: user.name, groceryList: groceryList})
+        setUser({name: user.name, favorites: user.favorites, groceryList: groceryList})
+    }
+
+    const toggleFavorite = () => {
+        let favorites = Array.from(user.favorites);
+        if (isFavorite) {
+            favorites = user.favorites.filter(item => item.name !== recipe.name);
+            setFavorite(false);
+        } else {
+            favorites.push(recipe);
+            setFavorite(true);
+        }
+
+        setUser({name: user.name, favorites: favorites, groceryList: user.groceryList});
     }
 
     const viewRecipe = (event) => {
         event.preventDefault()
-
-        let newView = {
-            name: name,
-            content: {
-                image: image,
-                name: name,
-                cookTime: cookTime,
-                prepTime: prepTime,
-                recipeYield: recipeYield,
-                desc: desc,
-                ingredients: ingredients,
-            }
-        }
-        console.log("Changing view to " + newView.name);
-        changeView(newView);
+        changeView(recipe.name, recipe);
     }
 
     return(
-        <article className={viewName !== name ? "recipe-card": "detail-recipe-card"}>
-            <img className="recipe" src={image} alt={"Some Recipe."}/>
+        <article className={viewName !== recipe.name ? "recipe-card": "detail-recipe-card"}>
+            <img className="recipe" src={recipe.image} alt={"Some Recipe."}/>
             <section className={"recipe-body"}>
-                <h3>{name} Recipe</h3>
-                <p><strong>Cook Time: </strong>{cookTime}</p>
-                <p><strong>Prep Time: </strong>{prepTime}</p>
-                <p><strong>Yield: </strong>{recipeYield}</p>
+                <h3>{recipe.name} Recipe</h3>
+                <p><strong>Cook Time: </strong>{recipe.cookTime}</p>
+                <p><strong>Prep Time: </strong>{recipe.prepTime}</p>
+                <p><strong>Yield: </strong>{recipe.recipeYield}</p>
                 {
-                    viewName !== name ? <button className={"recipe-button"} type="button" onClick={viewRecipe}>
+                    viewName !== recipe.name ? <button className={"recipe-button"} type="button" onClick={viewRecipe}>
                                         <FaEye/>  View Recipe</button> :
                         <section>
-                            <p>{desc}</p>
+                            <p>{recipe.desc}</p>
                             <h3 className={'ingredient-header'}>Ingredients</h3>
                             <ul className={"ingredient-list"}>
                                 {
-                                    ingredients.map(item =>
+                                    recipe.ingredients.map(item =>
                                         <li key={item}>
                                             {item} <button type={"button"} onClick={() => addItem(item)}>+</button>
                                         </li>
@@ -63,7 +74,7 @@ function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredi
                             </ul>
                         </section>
                 }
-                <button className={"recipe-button"} type="button"><FaHeart/> Add to Favorites</button>
+                <Favorite isFavorite={isFavorite} toggleFavorite={toggleFavorite}/>
             </section>
         </article>
     );

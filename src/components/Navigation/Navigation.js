@@ -3,13 +3,18 @@ import UserContext from "../User/User";
 import './Navigation.css';
 import GroceryList from "../GroceryList/GroceryList";
 
-function Navigation({setUser}) {
+function Navigation({setRecipes, changeView, setUser}) {
     const user = useContext(UserContext);
+
+    const displayFavorites = () => {
+        setRecipes(user.favorites)
+        changeView("main-app")
+    }
 
     return(
         <nav className={"flex: 1 1 auto;"}>
             <ul className={"user-bar"}>
-                {<button className={"grocery-button"} type={"button"}>Favorites</button>  /* TODO: Replace with link to favorites page*/}
+                {<button className={"grocery-button"} type={"button"} onClick={displayFavorites}>Favorites</button>}
                 <li>
                     <GroceryList setUser={setUser}/>
                 </li>

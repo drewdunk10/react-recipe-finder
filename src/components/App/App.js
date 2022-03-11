@@ -7,7 +7,8 @@ import Navigation from "../Navigation/Navigation";
 
 const initUser = {
     name: 'Drew',
-    groceryList: []
+    groceryList: [],
+    favorites: []
 }
 
 function App() {
@@ -15,8 +16,8 @@ function App() {
     const [view, setView] = useState({name: "main-app", content: {}});
     const [appUser, setUser] = useState(initUser)   // Use a state to control changes to groceryList across components.
 
-    const changeView = (view) => {
-        setView(view);
+    const changeView = (viewName, content={}) => {
+        setView({name: viewName, content: content});
     }
 
     return (
@@ -24,7 +25,7 @@ function App() {
       <UserContext.Provider value={appUser}>
         <div id="app">
             <header id="app-header">
-                <Navigation setUser={setUser}/>
+                <Navigation setRecipes={setRecipes} changeView={changeView} setUser={setUser}/>
                 <h1>
                     Recipe Finder
                 </h1>
@@ -34,7 +35,7 @@ function App() {
             </header>
             {/* Prevent form from refreshing page upon enter key */}
             <form onSubmit={(event) => event.preventDefault()}>
-                <Search update={setRecipes} setView={setView}/>
+                <Search setRecipes={setRecipes} setView={setView}/>
             </form>
                 {view.name === 'main-app' ?
                     <main id={'recipe-container'}>
@@ -42,15 +43,10 @@ function App() {
                             recipes.map(recipe =>
                                 <RecipeCard
                                     key={recipe.name}
-                                    image={recipe.image}
-                                    name={recipe.name}
-                                    cookTime={recipe.cookTime}
-                                    prepTime={recipe.prepTime}
-                                    recipeYield={recipe.recipeYield}
-                                    desc={recipe.description}
-                                    ingredients={recipe.ingredients}
+                                    recipe={recipe}
                                     viewName={view.name}
                                     changeView={changeView}
+                                    setUser={setUser}
                                 />
                             )
                         }
@@ -58,13 +54,7 @@ function App() {
                     <main>
                         <RecipeCard
                             key={view.content.name}
-                            image={view.content.image}
-                            name={view.content.name}
-                            cookTime={view.content.cookTime}
-                            prepTime={view.content.prepTime}
-                            recipeYield={view.content.recipeYield}
-                            desc={view.content.description}
-                            ingredients={view.content.ingredients}
+                            recipe={view.content}
                             viewName={view.content.name}
                             changeView={changeView}
                             setUser={setUser}

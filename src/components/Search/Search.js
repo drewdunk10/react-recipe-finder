@@ -2,27 +2,27 @@ import {parse} from 'iso8601-duration'
 import { FaSearch } from "react-icons/fa"
 import './Search.css';
 
-function Search({update, setView}) {
+function Search({setRecipes, setView}) {
     return(
         <div id={"search-bar"}>
             <FaSearch/>
             <input type="text" name="name" placeholder={"Find Recipe"} id={"search-input"}
-                   onKeyPress={async (event) => await handleKeyPress(event, update, setView)}
+                   onKeyPress={async (event) => await handleKeyPress(event, setRecipes, setView)}
             />
         </div>
     );
 }
 
-const handleKeyPress = async (event, update, setView) => {
+const handleKeyPress = async (event, setRecipes, setView) => {
     console.log("Detected keypress")
     if (event.key === "Enter") {
         console.log("Detected enter")
-        await handleSearch(update, setView);
+        await handleSearch(setRecipes, setView);
     }
 }
 
-const handleSearch = async (update, setView) => {
-    await update(await fetchRecipes(document.querySelector("#search-input").value));
+const handleSearch = async (setRecipes, setView) => {
+    await setRecipes(await fetchRecipes(document.querySelector("#search-input").value));
     setView({name: "main-app"});
 }
 
