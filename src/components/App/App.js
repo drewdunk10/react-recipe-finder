@@ -16,6 +16,7 @@ function App() {
     const [view, setView] = useState({name: "main-app", content: {}});
     const [appUser, setUser] = useState(initUser)   // Use a state to control changes to groceryList across components.
 
+    // Wrapper function to set view/content.
     const changeView = (viewName, content={}) => {
         setView({name: viewName, content: content});
     }
@@ -35,7 +36,7 @@ function App() {
             </header>
             {/* Prevent form from refreshing page upon enter key */}
             <form onSubmit={(event) => event.preventDefault()}>
-                <Search setRecipes={setRecipes} setView={setView}/>
+                <Search setRecipes={setRecipes} changeView={changeView}/>
             </form>
                 {view.name === 'main-app' ?
                     <main id={'recipe-container'}>

@@ -11,11 +11,12 @@ function RecipeCard({recipe, viewName, changeView, setUser}) {
 
     const recipeIsFavorite = (recipeName) => {
         let flag = false;
-        user.favorites.forEach(fav => {
-            if (fav.name === recipeName) {
+        for (let i = 0; i < user.favorites.length; i++) {
+            if (user.favorites[i].name === recipeName) {
                 flag = true;
+                break;
             }
-        });
+        }
         return flag;
     }
     const [isFavorite, setFavorite] = useState(recipeIsFavorite(recipe.name))
@@ -61,7 +62,7 @@ function RecipeCard({recipe, viewName, changeView, setUser}) {
                     viewName !== recipe.name ? <button className={"recipe-button"} type="button" onClick={viewRecipe}>
                                         <FaEye/>  View Recipe</button> :
                         <section>
-                            <p>{recipe.desc}</p>
+                            <p>{recipe.description}</p>
                             <h3 className={'ingredient-header'}>Ingredients</h3>
                             <ul className={"ingredient-list"}>
                                 {
