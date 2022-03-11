@@ -1,21 +1,15 @@
 .user-bar {
     display: flex;
     justify-content: right;
-    gap: 1.5em;
+    gap: 5em;
     /* Hide bullet point and remove its spacing */
     list-style: none;
-    /*padding: 0 .2em 0 0;*/
 }
 
 @media screen and (max-width: 768px) {
     .user-bar {
         justify-content: space-around;
         flex-direction: column-reverse; /* Display welcome message at top */
-    }
-
-    nav ul button {
-        width: 100%;
-        padding: 1em;
     }
 }
 
@@ -40,4 +34,11 @@ nav ul {
 
 .grocery-button:hover {
     background-color: #c5d5c5;
+}
+
+@media screen and (max-width: 768px) {
+    .grocery-button {
+        width: 100%;
+        padding: 1em;
+    }
 }

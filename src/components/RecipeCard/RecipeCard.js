@@ -1,23 +1,22 @@
 import './RecipeCard.css'
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import { FaHeart, FaEye } from "react-icons/fa"
 import UserContext from "../User/User";
 
 export default RecipeCard;
 
-function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredients, viewName, changeView}) {
+function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredients, viewName, changeView, setUser}) {
     const user = useContext(UserContext);
-    const [myGroceryList, setMyGroceryList] = useState(user.groceryList)
 
-    // TODO: Need to update grocery list as it's displayed.
     const addItem = (item) => {
         // Make a copy of state groceryList with selected item.
-        let groceryList = Array.from(myGroceryList);
-        groceryList.push(item);
+        let groceryList = Array.from(user.groceryList);
+        if (!groceryList.includes(item)) {
+            groceryList.push(item);
+        }
 
-        setMyGroceryList(groceryList);
-        user.groceryList = groceryList;
-        console.log(user.groceryList);
+        // Update groceryList state of App.
+        setUser({name: user.name, groceryList: groceryList})
     }
 
     const viewRecipe = (event) => {
@@ -48,7 +47,8 @@ function RecipeCard({image, name, cookTime, prepTime, recipeYield, desc, ingredi
                 <p><strong>Prep Time: </strong>{prepTime}</p>
                 <p><strong>Yield: </strong>{recipeYield}</p>
                 {
-                    viewName !== name ? <button className={"recipe-button"} type="button" onClick={viewRecipe}><FaEye/>  View Recipe</button> :
+                    viewName !== name ? <button className={"recipe-button"} type="button" onClick={viewRecipe}>
+                                        <FaEye/>  View Recipe</button> :
                         <section>
                             <p>{desc}</p>
                             <h3 className={'ingredient-header'}>Ingredients</h3>

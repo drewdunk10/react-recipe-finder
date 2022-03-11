@@ -5,7 +5,7 @@ import './App.css';
 import {useState} from "react";
 import Navigation from "../Navigation/Navigation";
 
-const user = {
+const initUser = {
     name: 'Drew',
     groceryList: []
 }
@@ -13,6 +13,7 @@ const user = {
 function App() {
     const [recipes, setRecipes] = useState([])
     const [view, setView] = useState({name: "main-app", content: {}});
+    const [appUser, setUser] = useState(initUser)   // Use a state to control changes to groceryList across components.
 
     const changeView = (view) => {
         setView(view);
@@ -20,10 +21,10 @@ function App() {
 
     return (
       // Give all child components access to user context.
-      <UserContext.Provider value={user}>
+      <UserContext.Provider value={appUser}>
         <div id="app">
             <header id="app-header">
-                <Navigation/>
+                <Navigation setUser={setUser}/>
                 <h1>
                     Recipe Finder
                 </h1>
@@ -31,7 +32,8 @@ function App() {
                     By Drew Dunkelberger
                 </h2>
             </header>
-            <form onSubmit={handleSubmit}>
+            {/* Prevent form from refreshing page upon enter key */}
+            <form onSubmit={(event) => event.preventDefault()}>
                 <Search update={setRecipes} setView={setView}/>
             </form>
                 {view.name === 'main-app' ?
@@ -65,17 +67,13 @@ function App() {
                             ingredients={view.content.ingredients}
                             viewName={view.content.name}
                             changeView={changeView}
+                            setUser={setUser}
                         />
                     </main>
                 }
         </div>
       </UserContext.Provider>
   );
-}
-
-const handleSubmit = (event) => {
-    console.log("HERE")
-    event.preventDefault();
 }
 
 export default App;

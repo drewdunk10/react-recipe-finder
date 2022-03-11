@@ -3,7 +3,7 @@ import UserContext from "../User/User";
 import './Navigation.css';
 import GroceryList from "../GroceryList/GroceryList";
 
-function Navigation() {
+function Navigation({setUser}) {
     const user = useContext(UserContext);
 
     return(
@@ -11,7 +11,7 @@ function Navigation() {
             <ul className={"user-bar"}>
                 {<button className={"grocery-button"} type={"button"}>Favorites</button>  /* TODO: Replace with link to favorites page*/}
                 <li>
-                    <GroceryList/>
+                    <GroceryList setUser={setUser}/>
                 </li>
                 <li>Welcome, {user.name}</li>
             </ul>
