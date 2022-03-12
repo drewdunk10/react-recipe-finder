@@ -58,7 +58,7 @@ function RecipeCard({recipe, viewName, changeView, setUser}) {
         <article className={viewName !== recipe.name ? "recipe-card": "detail-recipe-card"}>
             <img className="recipe" src={recipe.image} alt={"Some Recipe."}/>
             <section className={"recipe-body"}>
-                <h3>{recipe.name} Recipe</h3>
+                <h3>{recipe.name}</h3>
                 <p><strong>Cook Time: </strong>{recipe.cookTime}</p>
                 <p><strong>Prep Time: </strong>{recipe.prepTime}</p>
                 <p><strong>Yield: </strong>{recipe.recipeYield}</p>

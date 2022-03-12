@@ -5,11 +5,9 @@ import { FaSearch } from "react-icons/fa"
 // Component that provides a search bar to find recipes and submits upon enter key.
 function Search({setRecipes, changeView}) {
 
-    // Checks keypress for enter, and handles search if so.
-    const handleKeyPress = async (event) => {
-        if (event.key === "Enter") {
-            await handleSearch();
-        }
+    // Performs a search when a key is lifted by user.
+    const handleKeyUp = async () => {
+        await handleSearch();
     }
 
     // Pass search results to fetch and switch to main view.
@@ -32,8 +30,8 @@ function Search({setRecipes, changeView}) {
                 let filteredRecipes = [];
                 data.forEach(recipe => {
                     // Only return results that contain string in name, description, or ingredients.
-                    if (recipe.name.toLowerCase().includes(searchStr) ||
-                        recipe.description.toLowerCase().includes(searchStr) ||
+                    if (recipe.name.toLowerCase().includes(searchStr.toLowerCase()) ||
+                        recipe.description.toLowerCase().includes(searchStr.toLowerCase()) ||
                         ingredientsContainsString(recipe.ingredients, searchStr))
                     {
                         recipe.prepTime = formatDuration(recipe.prepTime);
@@ -74,7 +72,7 @@ function Search({setRecipes, changeView}) {
         <div id={"search-bar"}>
             <FaSearch color={"grey"}/>
             <input type="text" name="name" placeholder={"Find Recipe"} id={"search-input"}
-                   onKeyPress={async (event) => await handleKeyPress(event)}
+                   onKeyUp={async () => await handleKeyUp()}
             />
         </div>
     );
