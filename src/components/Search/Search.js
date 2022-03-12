@@ -1,20 +1,24 @@
-import {parse} from 'iso8601-duration'
-import { FaSearch } from "react-icons/fa"
 import './Search.css';
+import { parse } from 'iso8601-duration'
+import { FaSearch } from "react-icons/fa"
 
+// Component that provides a search bar to find recipes and submits upon enter key.
 function Search({setRecipes, changeView}) {
 
+    // Checks keypress for enter, and handles search if so.
     const handleKeyPress = async (event) => {
         if (event.key === "Enter") {
             await handleSearch();
         }
     }
 
+    // Pass search results to fetch and switch to main view.
     const handleSearch = async () => {
         await setRecipes(await fetchRecipes(document.querySelector("#search-input").value));
         changeView("main-app");
     }
 
+    // Fetch and filter recipes by given search string.
     const fetchRecipes = (searchStr) => {
         // Fetch data from JSON in public folder
         return fetch('./recipes.json')
@@ -42,6 +46,7 @@ function Search({setRecipes, changeView}) {
             });
     }
 
+    // Returns whether given search string is contained in list of ingredients.
     const ingredientsContainsString = (ingredients, searchStr) => {
         let flag = false;
         for (let i = 0; i < ingredients.length; i++) {
@@ -53,6 +58,7 @@ function Search({setRecipes, changeView}) {
         return flag;
     }
 
+    // Convert iso8601 formatted duration to a more readable HH:MM format.
     const formatDuration = (durationISO) => {
         let formattedDuration = "N/A"
         if (durationISO !== "") {

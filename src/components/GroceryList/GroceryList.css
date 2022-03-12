@@ -40,11 +40,11 @@
     }
 }
 
-.hidden-list {
+.hidden {
     display: none;
 }
 
-.expanded-list {
+.expanded {
     display: block;
     margin: auto 0;  /* Override main section margin. */
 }

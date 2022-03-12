@@ -1,9 +1,9 @@
-import UserContext from "../User/User";
+import './App.css';
+import { useState } from "react";
 import Search from "../Search/Search";
 import RecipeCard from "../RecipeCard/RecipeCard"
-import './App.css';
-import {useState} from "react";
 import Navigation from "../Navigation/Navigation";
+import UserContext from "../User/User";
 
 const initUser = {
     name: 'Drew',
@@ -14,7 +14,7 @@ const initUser = {
 function App() {
     const [recipes, setRecipes] = useState([])
     const [view, setView] = useState({name: "main-app", content: {}});
-    const [appUser, setUser] = useState(initUser)   // Use a state to control changes to groceryList across components.
+    const [appUser, setUser] = useState(initUser)   // Use a state to control changes to user fields across subcomponents.
 
     // Wrapper function to set view/content.
     const changeView = (viewName, content={}) => {
@@ -52,6 +52,7 @@ function App() {
                             )
                         }
                     </main> :
+                    // If not main-app view, then provide a detail view for a single recipe.
                     <main>
                         <RecipeCard
                             key={view.content.name}

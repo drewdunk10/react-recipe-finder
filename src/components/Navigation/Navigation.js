@@ -1,11 +1,13 @@
-import {useContext} from "react";
-import UserContext from "../User/User";
 import './Navigation.css';
+import { useContext } from "react";
 import GroceryList from "../GroceryList/GroceryList";
+import UserContext from "../User/User";
 
+// Component that provides a navigation bar with all available user actions and greeting.
 function Navigation({setRecipes, changeView, setUser}) {
     const user = useContext(UserContext);
 
+    // Change to main view and display only favorite recipes.
     const displayFavorites = () => {
         setRecipes(user.favorites)
         changeView("main-app")
@@ -14,7 +16,9 @@ function Navigation({setRecipes, changeView, setUser}) {
     return(
         <nav className={"flex: 1 1 auto;"}>
             <ul className={"user-bar"}>
-                {<button className={"grocery-button"} type={"button"} onClick={displayFavorites}>Favorites</button>}
+                <button className={"grocery-button"} type={"button"} onClick={displayFavorites}>
+                    Favorites ({user.favorites.length})
+                </button>
                 <li>
                     <GroceryList setUser={setUser}/>
                 </li>

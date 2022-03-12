@@ -1,14 +1,14 @@
 import './RecipeCard.css'
-import {useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { FaEye } from "react-icons/fa"
-import UserContext from "../User/User";
 import Favorite from "../Favorite/Favorite";
+import UserContext from "../User/User";
 
-export default RecipeCard;
-
+// Component that provides a card containing a brief overview of a recipe.
 function RecipeCard({recipe, viewName, changeView, setUser}) {
     const user = useContext(UserContext);
 
+    // Return whether recipe is a favorite or not.
     const recipeIsFavorite = (recipeName) => {
         let flag = false;
         for (let i = 0; i < user.favorites.length; i++) {
@@ -21,6 +21,7 @@ function RecipeCard({recipe, viewName, changeView, setUser}) {
     }
     const [isFavorite, setFavorite] = useState(recipeIsFavorite(recipe.name))
 
+    // Add an ingredient to the user's cart if it's not already there.
     const addItem = (item) => {
         // Make a copy of state groceryList with selected item.
         let groceryList = Array.from(user.groceryList);
@@ -28,10 +29,11 @@ function RecipeCard({recipe, viewName, changeView, setUser}) {
             groceryList.push(item);
         }
 
-        // Update groceryList state of App.
+        // Update user's groceryList.
         setUser({name: user.name, favorites: user.favorites, groceryList: groceryList})
     }
 
+    // Favorite/unfavorite and add/remove recipe from favorites.
     const toggleFavorite = () => {
         let favorites = Array.from(user.favorites);
         if (isFavorite) {
@@ -42,9 +44,11 @@ function RecipeCard({recipe, viewName, changeView, setUser}) {
             setFavorite(true);
         }
 
+        // Update user's favorite list.
         setUser({name: user.name, favorites: favorites, groceryList: user.groceryList});
     }
 
+    // Change to a new, detailed view for the recipe.
     const viewRecipe = (event) => {
         event.preventDefault()
         changeView(recipe.name, recipe);
@@ -80,3 +84,5 @@ function RecipeCard({recipe, viewName, changeView, setUser}) {
         </article>
     );
 }
+
+export default RecipeCard;

@@ -1,7 +1,6 @@
 import { FaHeart } from "react-icons/fa";
 
-export default Favorite
-
+// Component that provides a button to toggle whether a recipe is a favorite or not.
 function Favorite({isFavorite, toggleFavorite}) {
     return(
         <button className={"recipe-button"} type="button" onClick={() => toggleFavorite()}>
@@ -12,3 +11,5 @@ function Favorite({isFavorite, toggleFavorite}) {
         </button>
     );
 }
+
+export default Favorite
