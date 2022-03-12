@@ -14,11 +14,13 @@ function Navigation({setRecipes, changeView, setUser}) {
     }
 
     return(
-        <nav className={"flex: 1 1 auto;"}>
+        <nav className={"nav-bar"}>
             <ul className={"user-bar"}>
-                <button className={"grocery-button"} type={"button"} onClick={displayFavorites}>
-                    Favorites ({user.favorites.length})
-                </button>
+                <li>
+                    <button className={"grocery-button"} type={"button"} onClick={displayFavorites}>
+                        Favorites ({user.favorites.length})
+                    </button>
+                </li>
                 <li>
                     <GroceryList setUser={setUser}/>
                 </li>

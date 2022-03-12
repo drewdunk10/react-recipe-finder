@@ -4,40 +4,16 @@
     flex-direction: column;
     justify-content: center;
     text-align: right;
-    background-color: #c5d5c5;
+    background-color: #e3e0cc;
     border-radius: .5em;
     /* Hide bullet point and remove its spacing */
     list-style: none;
     padding: 0;
 }
 
-.ingredient {
-    margin: .1em .2em;
-    padding: .2em 1em;
-    display: flex;
-    justify-content: space-between;
-    border: solid #e3e0cc;
-    border-radius: .5em;
-}
-
 .remove-button {
     padding: .5em 1em;
     margin: 0 .4em;
-}
-
-@media screen and (max-width: 768px) {
-    .dropdown {
-        position: unset;
-    }
-
-    .ingredient {
-        margin: 1em .2em;
-    }
-
-    .remove-button {
-        padding: 1em;
-        width: 50%;
-    }
 }
 
 .hidden {
@@ -47,4 +23,15 @@
 .expanded {
     display: block;
     margin: auto 0;  /* Override main section margin. */
+}
+
+@media screen and (max-width: 768px) {
+    .dropdown {
+        position: unset;
+    }
+
+    .remove-button {
+        padding: 1em;
+        width: 25%;
+    }
 }

@@ -72,7 +72,7 @@ function Search({setRecipes, changeView}) {
 
     return(
         <div id={"search-bar"}>
-            <FaSearch/>
+            <FaSearch color={"grey"}/>
             <input type="text" name="name" placeholder={"Find Recipe"} id={"search-input"}
                    onKeyPress={async (event) => await handleKeyPress(event)}
             />

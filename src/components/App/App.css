@@ -2,7 +2,35 @@
   text-align: center;
 }
 
+#app-header {
+  background-color: #c5d5c5;
+}
+
 #recipe-container {
   display: flex;
   flex-flow: row wrap;
+}
+
+h1, h3 {
+  color: #757a75;
+}
+
+h2 {
+  color: #9fa9a3;
+}
+
+/* Used by GroceryList and RecipeCard */
+.ingredient {
+  margin: .1em .2em;
+  padding: .2em 1em;
+  display: flex;
+  justify-content: space-between;
+  border: solid #9fa9a3;
+  border-radius: .5em;
+}
+
+@media screen and (max-width: 768px) {
+  .ingredient {
+    margin: 1em .2em;
+  }
 }

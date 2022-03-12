@@ -1,17 +1,18 @@
+p, li {
+    color: #757a75;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
 .recipe-card {
     text-align: left;
-    width: 23%;
+    width: 18%;
     margin: 1%;
     box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px 0, rgba(0, 0, 0, 0.08) 0 0 0 1px;
     border-radius: 1em;
-}
-
-@media screen and (max-width: 768px) {
-    /* Fit each recipe card to screen */
-    .recipe-card {
-        text-align: center;
-        width: 98%; /* Fit width of screen */
-    }
 }
 
 .detail-recipe-card {
@@ -31,25 +32,16 @@
     width: 90%;
     height: .1em;
     display: block;
-    background-color: rgba(0,0,0,0.94);
+    background-color: #9fa9a3;
 }
 
 .recipe-button {
     padding: .5em;
     margin: .2em;
-    background-color: #f0f0f0;
+    background-color: #e8e8e8;
     color: rgb(117, 122, 117);
     border: none;
     border-radius: .5em;
-}
-
-@media screen and (max-width: 768px) {
-    /* Fit button to screen */
-    .recipe-button {
-        padding: 1em;
-        margin: .5em;
-        width: 100%;
-    }
 }
 
 .recipe-button:hover {
@@ -60,7 +52,40 @@
     padding: 1.5em;
 }
 
-img {
-    width: 100%;
-    height: auto;
+@media screen and (max-width: 768px) {
+    /* Fit each recipe card to screen */
+    .recipe-card {
+        text-align: center;
+        width: 98%; /* Fit width of screen */
+    }
+
+    .detail-recipe-card {
+        text-align: center;
+    }
+
+    .ingredient-header:after {
+        width: 100%;
+    }
+
+    /* Fit button to screen */
+    .recipe-button {
+        padding: 1em;
+        margin: .5em;
+        width: 100%;
+    }
+
+    .ingredient-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ingredient-list li {
+        margin: 1em .2em;
+        list-style: none;
+    }
+
+    .add-button {
+        padding: 1em;
+        width: 25%;
+    }
 }

@@ -71,8 +71,11 @@ function RecipeCard({recipe, viewName, changeView, setUser}) {
                             <ul className={"ingredient-list"}>
                                 {
                                     recipe.ingredients.map(item =>
-                                        <li key={item}>
-                                            {item} <button type={"button"} onClick={() => addItem(item)}>+</button>
+                                        <li key={item} className={"ingredient"}>
+                                            {item}
+                                            <button type={"button"} className={"add-button"} onClick={() => addItem(item)}>
+                                                +
+                                            </button>
                                         </li>
                                     )
                                 }

@@ -12,9 +12,9 @@ const initUser = {
 }
 
 function App() {
-    const [recipes, setRecipes] = useState([])
+    const [recipes, setRecipes] = useState([]);
     const [view, setView] = useState({name: "main-app", content: {}});
-    const [appUser, setUser] = useState(initUser)   // Use a state to control changes to user fields across subcomponents.
+    const [appUser, setUser] = useState(initUser);   // Use a state to control changes to user fields across subcomponents.
 
     // Wrapper function to set view/content.
     const changeView = (viewName, content={}) => {
